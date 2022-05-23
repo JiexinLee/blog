@@ -1,6 +1,6 @@
-# flutter_abnhelper
+# flutter App for Lee's blog
 
-A new Flutter project.
+An App with multiple functions and animations, post regularly with learning experience in Flutter.
 
 ## Getting Started
 

@@ -1,4 +1,4 @@
-# flutter App for Lee's blog
+# Flutter App for Lee's blog
 
 An App with multiple functions and animations, post regularly with learning experience in Flutter.
 

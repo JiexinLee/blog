@@ -14,12 +14,37 @@ enum ButtonState { init, loading, done }
 
 class _PostState extends State<Post> {
   ButtonState state = ButtonState.init;
+  // Stepper
+  int currentStep = 0;
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+
+    /// Animated Button
     bool isAnimated = false;
     final isStretched = isAnimated || state == ButtonState.init;
     final isDone = state == ButtonState.done;
+
+    List<Step> getSteps() => [
+          Step(
+            state: currentStep > 0 ? StepState.complete : StepState.indexed,
+            isActive: currentStep >= 0,
+            title: Text('Title'),
+            content: Container(),
+          ),
+          Step(
+            state: currentStep > 1 ? StepState.complete : StepState.indexed,
+            isActive: currentStep >= 1,
+            title: Text('Content'),
+            content: Container(),
+          ),
+          Step(
+            isActive: currentStep >= 2,
+            title: Text('Complete'),
+            content: Container(),
+          ),
+        ];
 
     return Scaffold(
       appBar: AppBar(
@@ -36,11 +61,56 @@ class _PostState extends State<Post> {
           ),
         ),
       ),
-      body: ListView(
+      body: Column(
         children: [
-          Container(
-            height: 80,
+          Theme(
+            data: Theme.of(context).copyWith(
+                colorScheme:
+                    const ColorScheme.light(primary: AppColor.mainThemeColor)),
+            child: Stepper(
+              onStepTapped: (step) => setState(() => currentStep = step),
+              steps: getSteps(),
+              currentStep: currentStep,
+              onStepContinue: () {
+                final isLastStep = currentStep == getSteps().length - 1;
+                if (isLastStep) {
+                  print("complete");
+                  //send data to server
+                } else {
+                  setState(() => currentStep += 1);
+                  print(123);
+                }
+              },
+              onStepCancel: currentStep == 0
+                  ? null
+                  : () => setState(() => currentStep -= 1),
+              controlsBuilder: (context, details) =>  Container(
+                margin: const EdgeInsets.only(top: 50),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    if(currentStep != 2)
+                    Expanded(
+                      child: ElevatedButton(
+                        
+                        onPressed: details.onStepContinue,
+                        child: const Text("NEXT"),
+                      ),
+                    ),
+                    const SizedBox(width: 12,),
+                    if(currentStep != 0)
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: details.onStepCancel,
+                        child: const Text("BACK"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
+          Expanded(child: Container()),
           Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(32),
@@ -67,18 +137,15 @@ class _PostState extends State<Post> {
           setState(() => state = ButtonState.init);
         },
         style: OutlinedButton.styleFrom(
-          shape: const StadiumBorder(),
-          side: const BorderSide(
-            width: 2,
-            color: Colors.indigo,
-          ),
+          
+          backgroundColor: Colors.indigo,
         ),
         child: const FittedBox(
           child: Text(
             'SUBMIT',
             style: TextStyle(
               fontSize: 21,
-              color: Colors.indigo,
+              color: Colors.white,
               letterSpacing: 1.5,
               fontWeight: FontWeight.w600,
             ),

@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-  /// 页面背景颜色
+  /// theme color
+  static const Color mainThemeColor = Colors.indigo;
+  /// Background color
   static const Color scaffoldBackground = Color(0xFFFFFFFF);
 
-  /// 主要背景颜色
+  /// Main background color
   // static const Color primaryBackground = Color(0xFF5C78FF);
 
-  /// 主要文本颜色
+  /// Main Text Color
   static const Color primaryText = Color(0xFF333333);
 
-  /// 次要文本颜色
+  /// Sub Text color
   static const Color secondaryText = Color(0xFF74788D);
 
-  /// 高亮颜色
+  /// highlight color
   static const Color accentColor = Color(0xFF5C78FF);
 
   /// 次要颜色

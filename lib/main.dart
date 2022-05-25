@@ -5,6 +5,7 @@ import 'package:flutter_abnhelper/constants/theme.dart';
 import 'package:flutter_abnhelper/pages/demo.dart';
 import 'package:flutter_abnhelper/pages/find/find.dart';
 import 'package:flutter_abnhelper/pages/home/home.dart';
+import 'package:flutter_abnhelper/pages/me/me.dart';
 import 'package:flutter_abnhelper/pages/post/post.dart';
 import 'package:flutter_abnhelper/pages/welcome/welcome.dart';
 import 'package:flutter_abnhelper/widgets/navigation.dart';
@@ -60,24 +61,24 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       extendBody: true, // 扩展到Scaffold的底部
       resizeToAvoidBottomInset: false, // 不允许键盘事件影响界面
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () async {
-              final prefs = await SharedPreferences.getInstance();
-              prefs.setBool("showHome", false);
-              Get.offAll(()=>Welcome());
-            },
-            icon: const Icon(Icons.exit_to_app_rounded),
-            color: Colors.white,
-          ),
-        ],
-        backgroundColor: AppColor.accentColor,
-        title: Text(
-          widget.title,
-          style: const TextStyle(color: Colors.white),
-        ),
-      ),
+      // appBar: AppBar(
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () async {
+      //         final prefs = await SharedPreferences.getInstance();
+      //         prefs.setBool("showHome", false);
+      //         Get.offAll(()=>Welcome());
+      //       },
+      //       icon: const Icon(Icons.exit_to_app_rounded),
+      //       color: Colors.white,
+      //     ),
+      //   ],
+      //   backgroundColor: AppColor.accentColor,
+      //   title: Text(
+      //     widget.title,
+      //     style: const TextStyle(color: Colors.white),
+      //   ),
+      // ),
       // PageController 控制 PageView 呈现页面
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
@@ -87,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Home(),
           Find(),
           DemoPage(title: "chat"),
-          DemoPage(title: "user"),
+          Me(),
         ],
       ),
       // 底部带凹下的导航
@@ -108,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
             count: 9,
           ),
           NavigationItemModel(
-            label: "user",
+            label: "me",
             icon: SvgIcon.user,
           ),
         ],

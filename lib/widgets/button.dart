@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget buildSmallButton(bool isDone) {
-  final color = isDone ? Colors.green : Colors.indigo;
+  final color = isDone ? Colors.green : Colors.red.shade600;
   return Container(
       decoration: BoxDecoration(color: color, shape: BoxShape.circle),
       child: Center(

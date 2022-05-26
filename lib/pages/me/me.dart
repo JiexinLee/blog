@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_abnhelper/constants/colors.dart';
 import 'package:flutter_abnhelper/pages/me/numbers.dart';
+import 'package:flutter_abnhelper/pages/welcome/welcome.dart';
+import 'package:flutter_abnhelper/widgets/button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Me extends StatefulWidget {
   Me({Key? key}) : super(key: key);
@@ -10,7 +14,10 @@ class Me extends StatefulWidget {
   State<Me> createState() => _MeState();
 }
 
+enum ButtonState { init, loading, done }
+
 class _MeState extends State<Me> {
+  ButtonState state = ButtonState.init;
   double coverHeight = 280.0;
   double profileHeight = 144.0;
 
@@ -18,11 +25,31 @@ class _MeState extends State<Me> {
       "Flutter Software Developer for Flutter& Dart with years experience as Freelancer now. \n My mission is to create a better software world with awesome Flutter app designs!";
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
+    /// Animated Button
+    bool isAnimated = false;
+    final isStretched = isAnimated || state == ButtonState.init;
+    final isDone = state == ButtonState.done;
+
     return Scaffold(
       body: ListView(
         children: [
           buildTop(),
           buildContent(),
+          const SizedBox(height: 20),
+          Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(32),
+            child: AnimatedContainer(
+              width: state == ButtonState.init ? width : 60,
+              height: 60,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeIn,
+              onEnd: () => setState(() => isAnimated = !isAnimated),
+              child: isStretched ? loadingButton() : buildSmallButton(isDone),
+            ),
+          ),
         ],
       ),
     );
@@ -130,7 +157,6 @@ class _MeState extends State<Me> {
             color: Colors.indigo,
           ),
         ),
-       
       );
 
   Widget buildSocialIcon(IconData icon) => CircleAvatar(
@@ -144,5 +170,32 @@ class _MeState extends State<Me> {
               size: 32,
               color: Colors.white,
             ))),
+      );
+
+  Widget loadingButton() => OutlinedButton(
+        onPressed: () async {
+          final prefs = await SharedPreferences.getInstance();
+          setState(() => state = ButtonState.loading);
+          await Future.delayed(const Duration(milliseconds: 2500));
+          setState(() => state = ButtonState.done);
+          await Future.delayed(const Duration(milliseconds: 2500));
+          setState(() => state = ButtonState.init);
+          await prefs.setBool("showHome", false);
+          Get.offAll(() => Welcome());
+        },
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.red.shade600,
+        ),
+        child: const FittedBox(
+          child: Text(
+            'LOGOUT',
+            style: TextStyle(
+              fontSize: 21,
+              color: Colors.white,
+              letterSpacing: 1.5,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
       );
 }

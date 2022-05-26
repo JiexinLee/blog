@@ -47,6 +47,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final PageController pageController = PageController();
+  final controller = ScrollController();
   int currentIndex = 0;
 
   void onIndexChanged(int index) {
@@ -91,30 +92,30 @@ class _MyHomePageState extends State<MyHomePage> {
           Me(),
         ],
       ),
-      // 底部带凹下的导航
+      // Curve Navigation
       bottomNavigationBar: BuildNavigation(
-        currentIndex: currentIndex,
-        items: [
-          NavigationItemModel(
-            label: "home",
-            icon: SvgIcon.layout,
-          ),
-          NavigationItemModel(
-            label: "find",
-            icon: SvgIcon.search,
-          ),
-          NavigationItemModel(
-            label: "chat",
-            icon: SvgIcon.chat,
-            count: 9,
-          ),
-          NavigationItemModel(
-            label: "me",
-            icon: SvgIcon.user,
-          ),
-        ],
-        onTap: onIndexChanged, // 切换tab事件
-      ),
+          currentIndex: currentIndex,
+          items: [
+            NavigationItemModel(
+              label: "home",
+              icon: SvgIcon.layout,
+            ),
+            NavigationItemModel(
+              label: "find",
+              icon: SvgIcon.search,
+            ),
+            NavigationItemModel(
+              label: "chat",
+              icon: SvgIcon.chat,
+              count: 9,
+            ),
+            NavigationItemModel(
+              label: "me",
+              icon: SvgIcon.user,
+            ),
+          ],
+          onTap: onIndexChanged, // 切换tab事件
+        ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.to(()=> Post()),
         child: const Icon(Icons.add_circle_rounded, size: 50),

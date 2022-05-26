@@ -84,27 +84,28 @@ class _PostState extends State<Post> {
               onStepCancel: currentStep == 0
                   ? null
                   : () => setState(() => currentStep -= 1),
-              controlsBuilder: (context, details) =>  Container(
+              controlsBuilder: (context, details) => Container(
                 margin: const EdgeInsets.only(top: 50),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    if(currentStep != 2)
-                    Expanded(
-                      child: ElevatedButton(
-                        
-                        onPressed: details.onStepContinue,
-                        child: const Text("NEXT"),
+                    if (currentStep != 2)
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: details.onStepContinue,
+                          child: const Text("NEXT"),
+                        ),
                       ),
+                    const SizedBox(
+                      width: 12,
                     ),
-                    const SizedBox(width: 12,),
-                    if(currentStep != 0)
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: details.onStepCancel,
-                        child: const Text("BACK"),
+                    if (currentStep != 0)
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: details.onStepCancel,
+                          child: const Text("BACK"),
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
@@ -116,8 +117,8 @@ class _PostState extends State<Post> {
             padding: const EdgeInsets.all(32),
             child: AnimatedContainer(
               width: state == ButtonState.init ? width : 60,
-              height: 60,
-              duration: const Duration(milliseconds: 500),
+              height: 54,
+              duration: const Duration(milliseconds: 300),
               curve: Curves.easeIn,
               onEnd: () => setState(() => isAnimated = !isAnimated),
               child: isStretched ? loadingButton() : buildSmallButton(isDone),
@@ -131,13 +132,12 @@ class _PostState extends State<Post> {
   Widget loadingButton() => OutlinedButton(
         onPressed: () async {
           setState(() => state = ButtonState.loading);
-          await Future.delayed(const Duration(milliseconds: 2500));
+          await Future.delayed(const Duration(milliseconds: 2000));
           setState(() => state = ButtonState.done);
-          await Future.delayed(const Duration(milliseconds: 2500));
+          await Future.delayed(const Duration(milliseconds: 1000));
           setState(() => state = ButtonState.init);
         },
         style: OutlinedButton.styleFrom(
-          
           backgroundColor: Colors.indigo,
         ),
         child: const FittedBox(

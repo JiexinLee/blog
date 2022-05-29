@@ -51,7 +51,7 @@ class _WelcomeState extends State<Welcome> {
               subtitle: testText,
             ),
             buildWelcomePage(
-              title: "MOBILE DEVELOP",
+              title: "MOBILE DEVELOPER",
               color: Colors.lime.shade100,
               urlImage: "assets/images/taxation.png",
               subtitle: testText,

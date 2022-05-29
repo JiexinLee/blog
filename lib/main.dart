@@ -38,17 +38,19 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   final PageController pageController = PageController();
-  final controller = ScrollController();
   int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void onIndexChanged(int index) {
     setState(() {
@@ -60,8 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true, // 扩展到Scaffold的底部
-      resizeToAvoidBottomInset: false, // 不允许键盘事件影响界面
+      extendBody: true, // extend to Scaffold bottom
+      resizeToAvoidBottomInset: false, // avoid keyboard impact
       // appBar: AppBar(
       //   actions: [
       //     IconButton(
@@ -80,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
       //     style: const TextStyle(color: Colors.white),
       //   ),
       // ),
-      // PageController 控制 PageView 呈现页面
+      // PageController controls PageView for displaying pages
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
@@ -114,14 +116,14 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: SvgIcon.user,
             ),
           ],
-          onTap: onIndexChanged, // 切换tab事件
+          onTap: onIndexChanged, // change index with tap
         ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.to(()=> Post()),
         child: const Icon(Icons.add_circle_rounded, size: 50),
-      ), // 浮动按钮
+      ), // floating button
       floatingActionButtonLocation:
-          FloatingActionButtonLocation.centerDocked, // 浮动按钮 停靠在底部中间位置
+          FloatingActionButtonLocation.centerDocked, // Floating button - stick in the middle of the dock
     );
   }
 }

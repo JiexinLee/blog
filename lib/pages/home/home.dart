@@ -17,31 +17,42 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () async {
-              final prefs = await SharedPreferences.getInstance();
-              prefs.setBool("showHome", false);
-              Get.offAll(()=>Welcome());
-            },
-            icon: const Icon(Icons.exit_to_app_rounded),
-            color: Colors.white,
-          ),
-        ],
-        backgroundColor: AppColor.accentColor,
-        title: Text(
-          'jiexin',
-          style: const TextStyle(color: Colors.white),
-        ),
-      ),
-      body: Container(
-        margin: const EdgeInsets.only(top: 10),
-        child: ListView.separated(
-          itemCount: 10,
-          itemBuilder: (context, index) => card(index, context),
-          separatorBuilder: (BuildContext context, int index) => const SizedBox(
-            height: 20,
+      body: NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              centerTitle: true,
+              title: const Text(
+                "LEE'S BLOG",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold),
+              ),
+              expandedHeight: 150,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.asset(
+                  "assets/images/home_cover.png",
+                  fit: BoxFit.cover,
+                ),
+              ),
+              backgroundColor: AppColor.mainThemeColor,
+              floating: true,
+              snap: true,
+              pinned: true,
+            ),
+          ];
+        },
+        body: Container(
+          margin: const EdgeInsets.only(top: 5),
+          child: ListView.separated(
+            itemCount: 20,
+            itemBuilder: (context, index) => card(index, context),
+            separatorBuilder: (BuildContext context, int index) =>
+                const SizedBox(
+              height: 20,
+            ),
           ),
         ),
       ),

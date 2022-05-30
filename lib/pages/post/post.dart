@@ -74,11 +74,9 @@ class _PostState extends State<Post> {
               onStepContinue: () {
                 final isLastStep = currentStep == getSteps().length - 1;
                 if (isLastStep) {
-                  print("complete");
                   //send data to server
                 } else {
                   setState(() => currentStep += 1);
-                  print(123);
                 }
               },
               onStepCancel: currentStep == 0
@@ -92,8 +90,8 @@ class _PostState extends State<Post> {
                     if (currentStep != 2)
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: details.onStepContinue,
-                          child: const Text("NEXT"),
+                          onPressed: details.onStepCancel,
+                          child: const Text("BACK"),
                         ),
                       ),
                     const SizedBox(
@@ -102,8 +100,8 @@ class _PostState extends State<Post> {
                     if (currentStep != 0)
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: details.onStepCancel,
-                          child: const Text("BACK"),
+                          onPressed: details.onStepContinue,
+                          child: const Text("NEXT"),
                         ),
                       ),
                   ],

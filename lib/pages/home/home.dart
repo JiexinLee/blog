@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_abnhelper/constants/colors.dart';
-import 'package:flutter_abnhelper/pages/welcome/welcome.dart';
+import 'package:flutter_abnhelper/constants/url.dart';
+import 'package:http/http.dart' as http;
+import 'package:html/dom.dart' as dom;
 import 'package:flutter_abnhelper/widgets/card.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,6 +16,48 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<String> titleList = [];
+  List<String> imageUrls = [];
+  List<String> linksList = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    getResourceFromWeb();
+  }
+
+  Future getResourceFromWeb() async {
+    final url = Uri.parse(URL.scrapingLink);
+    final response = await http.get(url);
+    dom.Document html = dom.Document.html(response.body);
+
+    // get titles to list
+    final titles = html
+        .querySelectorAll('h2.post-card-title > a')
+        .map((element) => element.innerHtml.trim())
+        .toList();
+
+    // get image urls to list
+    final images = html
+        .querySelectorAll('a.post-card-image-link > img')
+        .map((e) => e.attributes['src']!)
+        .toList();
+
+    // get link for blogs
+    final links = html
+    .querySelectorAll('h2.post-card-title > a')
+    .map((e) => e.attributes['href']!)
+    .toList();
+
+    setState(() {
+      titleList = titles;
+      imageUrls = images;
+      linksList = links;
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +68,7 @@ class _HomeState extends State<Home> {
             SliverAppBar(
               centerTitle: true,
               title: const Text(
-                "LEE'S BLOG",
+                "LEE'S SCRAPING BLOGS",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 21,
@@ -44,17 +88,27 @@ class _HomeState extends State<Home> {
             ),
           ];
         },
-        body: Container(
-          margin: const EdgeInsets.only(top: 5),
-          child: ListView.separated(
-            itemCount: 20,
-            itemBuilder: (context, index) => card(index, context),
-            separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(
-              height: 20,
-            ),
-          ),
-        ),
+        body: isLoading
+            ? const Center(
+              child: SizedBox(
+                width: 100,
+                height: 100,
+                  child: CircularProgressIndicator(
+                  color: Colors.indigo,
+                )),
+            )
+            : Container(
+                margin: const EdgeInsets.only(top: 5),
+                child: ListView.separated(
+                  itemCount: titleList.length,
+                  itemBuilder: (context, index) =>
+                      card(index, context, titleList, imageUrls, linksList),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const SizedBox(
+                    height: 20,
+                  ),
+                ),
+              ),
       ),
     );
   }

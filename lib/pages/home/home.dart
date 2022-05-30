@@ -5,8 +5,6 @@ import 'package:flutter_abnhelper/constants/url.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
 import 'package:flutter_abnhelper/widgets/card.dart';
-import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -15,17 +13,22 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   List<String> titleList = [];
   List<String> imageUrls = [];
   List<String> linksList = [];
   bool isLoading = true;
+
+   @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
     super.initState();
     getResourceFromWeb();
   }
+
+  
 
   Future getResourceFromWeb() async {
     final url = Uri.parse(URL.scrapingLink);
@@ -112,4 +115,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+ 
 }

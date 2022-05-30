@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_abnhelper/constants/colors.dart';
 import 'package:flutter_abnhelper/pages/me/numbers.dart';
 import 'package:flutter_abnhelper/pages/welcome/welcome.dart';
 import 'package:flutter_abnhelper/widgets/button.dart';
+import 'package:flutter_abnhelper/widgets/chips.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,7 +23,7 @@ class _MeState extends State<Me> {
   double profileHeight = 144.0;
 
   String intro =
-      "Flutter Software Developer for Flutter& Dart with years experience as Freelancer now. \n My mission is to create a better software world with awesome Flutter app designs!";
+      "Flutter Software Developer for Flutter& Dart with years experience as Freelancer now. \nMy mission is to create a better software world with awesome Flutter app designs!";
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -33,10 +33,18 @@ class _MeState extends State<Me> {
     final isStretched = isAnimated || state == ButtonState.init;
     final isDone = state == ButtonState.done;
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size(width, 8),
+        child: AppBar(
+          backgroundColor: const Color.fromARGB(255, 15, 15, 15),
+        ),
+      ),
       body: ListView(
         children: [
           buildTop(),
           buildContent(),
+          const Divider(),
+          buildChips(),
           const SizedBox(height: 20),
           Container(
             alignment: Alignment.center,

@@ -18,18 +18,18 @@ This project is a personal project that displays new features, animations, desig
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">"Lee's Blog</h3>
+  <h3 align="center">Lee's Blog</h3>
   <p align="center">
-    一个"完美的"README模板去快速开始你的项目！
+    A personal project that you can quickly know who is Lee.
     <br />
-    <a href="https://github.com/JiexinLee/blog"><strong>探索本项目的文档 »</strong></a>
+    <a href="https://github.com/JiexinLee/blog"><strong>Check the document »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/JiexinLee/blog">查看Demo</a>
+    <a href="https://github.com/JiexinLee/blog">Check Demo</a>
     ·
     <a href="https://github.com/JiexinLee/blog/issues">Report Bug</a>
     ·
-    <a href="https://github.com/JiexinLee/blog/issues">提出新特性</a>
+    <a href="https://github.com/JiexinLee/blog/issues">Give a new feature</a>
   </p>
 
 </p>
@@ -37,26 +37,22 @@ This project is a personal project that displays new features, animations, desig
  
 ## Page of Contents
 
-- [上手指南](#上手指南)
-  - [开发前的配置要求](#开发前的配置要求)
-  - [安装步骤](#安装步骤)
-- [文件目录说明](#文件目录说明)
+- [Get Start](#Get Start)
+  - [Configurations](#Configurations)
+  - [Installation](#Installation)
+- [Files Structure](#Files Structure)
 - [开发的架构](#开发的架构)
-- [部署](#部署)
-- [使用到的框架](#使用到的框架)
+- [Frameworks](#Frameworks)
 - [贡献者](#贡献者)
   - [如何参与开源项目](#如何参与开源项目)
-- [版本控制](#版本控制)
+- [Version Control](#Version Control)
 - [作者](#作者)
-- [鸣谢](#鸣谢)
+- [Thanks](#Thanks)
 
-### 上手指南
-
-请将所有链接中的“shaojintian/Best_README_template”改为“your_github_name/your_repository”
+### Get Start
 
 
-
-###### 开发前的配置要求
+###### Configurations
 
 1. Flutter 2.15 <= 3.0
 2. Dart 
@@ -97,18 +93,13 @@ filetree
 ```
 
 
-
-
-
 ### 开发的架构 
 
 请阅读[ARCHITECTURE.md](https://github.com/shaojintian/Best_README_template/blob/master/ARCHITECTURE.md) 查阅为该项目的架构。
 
-### 部署
 
-暂无
 
-### 使用到的框架
+### Frameworks 
 
 - [xxxxxxx](https://getbootstrap.com)
 - [xxxxxxx](https://jquery.com)
@@ -141,7 +132,7 @@ Jiexin Li (Lee)
 
 该项目签署了MIT 授权许可，详情请参阅 [LICENSE.txt](https://github.com/shaojintian/Best_README_template/blob/master/LICENSE.txt)
 
-### 鸣谢
+### Thanks
 
 
 - [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)

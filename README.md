@@ -15,7 +15,7 @@ This project is a personal project that displays new features, animations, desig
 
 <p align="center">
   <a href="https://github.com/JiexinLee/blog">
-    <img src="assets/images/cover.png" alt="Logo" width="80" height="80">
+    <img src="assets/images/home_cover.png" alt="Logo">
   </a>
 
   <h3 align="center">Lee's Blog</h3>

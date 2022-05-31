@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: SvgIcon.layout,
             ),
             NavigationItemModel(
-              label: "find",
+              label: "discovery",
               icon: SvgIcon.search,
             ),
             NavigationItemModel(

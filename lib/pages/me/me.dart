@@ -44,7 +44,7 @@ class _MeState extends State<Me> {
           buildTop(),
           buildContent(),
           const Divider(),
-          buildChips(),
+          buildChipsPanel(),
           const SizedBox(height: 20),
           Container(
             alignment: Alignment.center,
@@ -196,7 +196,7 @@ class _MeState extends State<Me> {
         ),
         child: const FittedBox(
           child: Text(
-            'LOGOUT',
+            "<  SPLASH",
             style: TextStyle(
               fontSize: 21,
               color: Colors.white,

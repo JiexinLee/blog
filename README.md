@@ -94,14 +94,8 @@ filetree
 
 ### Frameworks 
 
-- None
-
-
-
-### Frameworks 
-
-- [xxxxxxx](https://getbootstrap.com)
-- [xxxxxxx](https://jquery.com)
+- [Flutter](https://flutter.dev/)
+- [GetX](https://github.com/jonataslaw/getx)
 - [xxxxxxx](https://laravel.com)
 
 ### Contributors

@@ -43,9 +43,9 @@ This project is a personal project that displays new features, animations, desig
 - [Files Structure](#Files Structure)
 - [Frameworks](#Frameworks)
 - [Contributors](#Contributors)
-  - [如何参与开源项目](#如何参与开源项目)
+  - [Fork](#Fork)
 - [Version Control](#Version Control)
-- [作者](#作者)
+- [Author](#Author)
 - [Thanks](#Thanks)
 
 ### Get Start
@@ -92,9 +92,9 @@ filetree
 ```
 
 
-### 开发的架构 
+### Frameworks 
 
-请阅读[ARCHITECTURE.md](https://github.com/name/xxxxxx/blob/master/ARCHITECTURE.md) 查阅为该项目的架构。
+- None
 
 
 
@@ -105,9 +105,6 @@ filetree
 - [xxxxxxx](https://laravel.com)
 
 ### Contributors
-
-请阅读**CONTRIBUTING.md** 查阅为该项目做出贡献的开发者。
-
 
 
 
@@ -127,9 +124,9 @@ This project uses Git for version control. You can check the version by checking
 
 Jiexin Li (Lee)
 
-### 版权说明
+### License
 
-该项目签署了MIT 授权许可，详情请参阅 [LICENSE.txt](https://github.com/)
+- unspecified
 
 ### Thanks
 

@@ -29,7 +29,7 @@ Widget buildWelcomePage({
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 30,
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),

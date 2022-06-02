@@ -43,8 +43,8 @@ class _MeState extends State<Me> {
         children: [
           buildTop(),
           buildContent(),
-          const Divider(),
-          buildChipsPanel(),
+          // const Divider(),
+          // buildChipsPanel(),
           const SizedBox(height: 20),
           Container(
             alignment: Alignment.center,
@@ -196,7 +196,7 @@ class _MeState extends State<Me> {
         ),
         child: const FittedBox(
           child: Text(
-            "<  SPLASH",
+            "Go To WELCOME",
             style: TextStyle(
               fontSize: 21,
               color: Colors.white,

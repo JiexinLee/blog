@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_abnhelper/constants/text.dart';
 import 'package:flutter_abnhelper/main.dart';
 import 'package:flutter_abnhelper/widgets/welcome.dart';
 import 'package:get/get.dart';
@@ -17,8 +18,6 @@ class _WelcomeState extends State<Welcome> {
   var isLoading = false;
   var isLastPage = false;
   var pageCount = 3;
-  final testText =
-      "lkajso bkjah gguwoi hlh, bak jkahjdk vkkguk b kjuhausd,bkjah gguwoi hlh, bak jkahjdk vkkguk b kjuhausd,bkjah gguwoi hlh, bak jkahjdk vkkguk b kjuhausd,";
   @override
   void dispose() {
     controller.dispose();
@@ -42,19 +41,19 @@ class _WelcomeState extends State<Welcome> {
               title: "JIEXIN LI",
               color: Colors.amber.shade100,
               urlImage: "assets/images/business.png",
-              subtitle: testText,
+              subtitle: IntroText.firstPageIntro,
             ),
             buildWelcomePage(
               title: "PASSION",
               color: Colors.indigo.shade100,
               urlImage: "assets/images/working.png",
-              subtitle: testText,
+              subtitle: IntroText.secondPageIntro,
             ),
             buildWelcomePage(
               title: "MOBILE DEV",
               color: Colors.lime.shade100,
               urlImage: "assets/images/taxation.png",
-              subtitle: testText,
+              subtitle: IntroText.lastPageIntro,
             ),
           ],
         ),
@@ -104,7 +103,8 @@ class _WelcomeState extends State<Welcome> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: TextButton(
-                      onPressed: () => Get.offAll(const MyHomePage(title: "Jiexin Li")),
+                      onPressed: () =>
+                          Get.offAll(const MyHomePage(title: "Jiexin Li")),
                       child: const Text(
                         "SKIP",
                         style: TextStyle(

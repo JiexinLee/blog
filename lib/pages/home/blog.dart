@@ -31,7 +31,7 @@ class _BlogDetailState extends State<BlogDetail> {
       // For Android platform
       onWillPop: () async {
         if (await controller.canGoBack()) {
-          // Stay in App when press back button
+          // Stay in App when press back button(original button)
           return false;
         } else {
           return true;
@@ -75,7 +75,7 @@ class _BlogDetailState extends State<BlogDetail> {
                     ),
                     Center(
                       child: Text(
-                        "${ (loadingPercentage*100).toInt()} %",
+                        "${(loadingPercentage * 100).toInt()} %",
                         style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

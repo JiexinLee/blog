@@ -5,4 +5,6 @@ class IntroText {
       "Flutter Enthusiast, and have implemented many widgets for reusing, and mobile app will be compatible for different size and multiple platforms. Spending my spare time on programming, and I work on creating better and smoother designs for Flutter.";
   static const String lastPageIntro =
       "Also, I am proficient in different tech stacks like Javascript, HTML, CSS, React.js, React Native etc. I believe you will quickly see more than a positive return on the investment.";
+  static const String introForMePage =
+      "Flutter Software Developer for Flutter& Dart with years experience as Freelancer now. \nMy mission is to create a better software world with awesome Flutter app designs!";
 }

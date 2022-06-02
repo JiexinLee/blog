@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// each welcome page
 Widget buildWelcomePage({
   required String title,
   required Color color,

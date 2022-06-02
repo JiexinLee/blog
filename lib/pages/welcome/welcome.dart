@@ -14,9 +14,16 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
+  /// page controller for page view at welcome page
   final controller = PageController();
+
+  /// loading indicator for button
   var isLoading = false;
+
+  /// indicate is the page is the last page
   var isLastPage = false;
+
+  /// page amount
   var pageCount = 3;
   @override
   void dispose() {
@@ -58,6 +65,9 @@ class _WelcomeState extends State<Welcome> {
           ],
         ),
       ),
+      /**
+       * if is the last page, the bottom will show a big button for going to home page
+       */
       bottomSheet: isLastPage
           ? ElevatedButton(
               style: TextButton.styleFrom(
@@ -69,7 +79,11 @@ class _WelcomeState extends State<Welcome> {
                 minimumSize: const Size.fromHeight(80),
               ),
               onPressed: () async {
+                /// get instance for local storage
                 final prefs = await SharedPreferences.getInstance();
+
+                /// set the instance to true, if restart the device,
+                /// will not go to [welcome] page again
                 await prefs.setBool("showHome", true);
                 if (isLoading) return;
                 setState(() => isLoading = true);
@@ -119,7 +133,8 @@ class _WelcomeState extends State<Welcome> {
                     child: SmoothPageIndicator(
                       controller: controller,
                       count: pageCount,
-                      // style of the page dots
+
+                      /// style of the page dots
                       effect: const WormEffect(
                         activeDotColor: Colors.indigo,
                         dotColor: Colors.grey,

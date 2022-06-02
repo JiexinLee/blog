@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_abnhelper/constants/colors.dart';
+import 'package:flutter_abnhelper/constants/text.dart';
 import 'package:flutter_abnhelper/pages/me/numbers.dart';
 import 'package:flutter_abnhelper/pages/welcome/welcome.dart';
 import 'package:flutter_abnhelper/widgets/button.dart';
@@ -17,15 +18,16 @@ class Me extends StatefulWidget {
 
 enum ButtonState { init, loading, done }
 
+/// button press status
+
 class _MeState extends State<Me> {
   ButtonState state = ButtonState.init;
   double coverHeight = 280.0;
   double profileHeight = 144.0;
 
-  String intro =
-      "Flutter Software Developer for Flutter& Dart with years experience as Freelancer now. \nMy mission is to create a better software world with awesome Flutter app designs!";
   @override
   Widget build(BuildContext context) {
+    // device width
     final width = MediaQuery.of(context).size.width;
 
     /// Animated Button
@@ -50,6 +52,7 @@ class _MeState extends State<Me> {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(32),
             child: AnimatedContainer(
+              // animated container for any changes in button status
               width: state == ButtonState.init ? width : 60,
               height: 60,
               duration: const Duration(milliseconds: 500),
@@ -121,20 +124,20 @@ class _MeState extends State<Me> {
           padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
+            children: const [
+              Text(
                 "About",
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 14,
               ),
               Text(
-                intro,
-                style: const TextStyle(fontSize: 16, height: 1.4),
+                IntroText.introForMePage,
+                style: TextStyle(fontSize: 16, height: 1.4),
               ),
             ],
           ),
@@ -143,6 +146,7 @@ class _MeState extends State<Me> {
     );
   }
 
+  /// build cover image for top
   Widget buildCoverImage() => Container(
         color: Colors.grey,
         child: Image.asset(
@@ -153,6 +157,7 @@ class _MeState extends State<Me> {
         ),
       );
 
+  /// rounded profile image for lee
   Widget buildProfileImage() => Container(
         width: profileHeight,
         height: profileHeight,
@@ -167,6 +172,7 @@ class _MeState extends State<Me> {
         ),
       );
 
+  /// social media badget/avatar
   Widget buildSocialIcon(IconData icon) => CircleAvatar(
         backgroundColor: AppColor.mainThemeColor,
         radius: 25,
@@ -180,6 +186,7 @@ class _MeState extends State<Me> {
             ))),
       );
 
+  /// animated button
   Widget loadingButton() => OutlinedButton(
         onPressed: () async {
           final prefs = await SharedPreferences.getInstance();
@@ -188,6 +195,7 @@ class _MeState extends State<Me> {
           setState(() => state = ButtonState.done);
           await Future.delayed(const Duration(milliseconds: 2500));
           setState(() => state = ButtonState.init);
+          // delete local storage, after restart the app, will not go to home page
           await prefs.setBool("showHome", false);
           Get.offAll(() => Welcome());
         },

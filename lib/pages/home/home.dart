@@ -14,12 +14,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
+  /// by inheritage this mixin, app will be able to keep data, will not
+  /// refresh data itself.
+
   List<String> titleList = [];
   List<String> imageUrls = [];
   List<String> linksList = [];
   bool isLoading = true;
 
-   @override
+  /// by inheritage this mixin, have to override this
+  @override
   bool get wantKeepAlive => true;
 
   @override
@@ -28,30 +32,29 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     getResourceFromWeb();
   }
 
-  
-
+  /// fetch data from internet
   Future getResourceFromWeb() async {
     final url = Uri.parse(URL.scrapingLink);
     final response = await http.get(url);
     dom.Document html = dom.Document.html(response.body);
 
-    // get titles to list
+    /// get titles to list
     final titles = html
         .querySelectorAll('h2.post-card-title > a')
         .map((element) => element.innerHtml.trim())
         .toList();
 
-    // get image urls to list
+    /// get image urls to list
     final images = html
         .querySelectorAll('a.post-card-image-link > img')
         .map((e) => e.attributes['src']!)
         .toList();
 
-    // get link for blogs
+    /// get link for blogs
     final links = html
-    .querySelectorAll('h2.post-card-title > a')
-    .map((e) => e.attributes['href']!)
-    .toList();
+        .querySelectorAll('h2.post-card-title > a')
+        .map((e) => e.attributes['href']!)
+        .toList();
 
     setState(() {
       titleList = titles;
@@ -93,13 +96,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         },
         body: isLoading
             ? const Center(
-              child: SizedBox(
-                width: 100,
-                height: 100,
-                  child: CircularProgressIndicator(
-                  color: Colors.indigo,
-                )),
-            )
+                child: SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: CircularProgressIndicator(
+                      color: Colors.indigo,
+                    )),
+              )
             : Container(
                 margin: const EdgeInsets.only(top: 5),
                 child: ListView.separated(
@@ -115,6 +118,4 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       ),
     );
   }
-
- 
 }

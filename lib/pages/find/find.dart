@@ -21,6 +21,7 @@ class _FindState extends State<Find> {
       ),
       body: Column(
         children: [
+          /// Search textfield
           Container(
             margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
             child: TextField(
@@ -38,6 +39,8 @@ class _FindState extends State<Find> {
               ),
             ),
           ),
+
+          /// staggered grid view
           BasicGridView(),
         ],
       ),
